@@ -24,9 +24,8 @@ const Navbar = () => {
     }
   };
 
-  const handleContactClick = async (e ) => {
+  const handleContactClick = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-
     if (pathname !== '/') {
       // If not on home page, navigate to home page first
       router.push('/');
@@ -39,6 +38,7 @@ const Navbar = () => {
       scrollToContact();
     }
   };
+  
 
   const navItems = [
     { href: '/about', label: 'About Me' },
