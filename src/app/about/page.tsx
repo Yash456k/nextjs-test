@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Calendar, Award, Stethoscope } from 'lucide-react';
 
 const About = () => {
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-16 px-6">
       <Card className="max-w-5xl mx-auto p-8 lg:p-12 bg-white/80 backdrop-blur">
@@ -97,10 +98,13 @@ const About = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                Book Consultation
-              </Button>
+            <a href="/#contact_us">
+  <Button size="lg" className="flex items-center gap-2">
+    <Calendar className="w-4 h-4" />
+    Book Consultation
+  </Button>
+</a>
+
             </div>
           </CardContent>
         </div>
