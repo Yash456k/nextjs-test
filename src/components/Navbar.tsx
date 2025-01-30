@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -25,7 +24,7 @@ const Navbar = () => {
     }
   };
 
-  const handleContactClick = async (e) => {
+  const handleContactClick = async (e ) => {
     e.preventDefault();
 
     if (pathname !== '/') {
