@@ -67,7 +67,7 @@ const services = [
   },
 ];
 
-const ServiceCard = ({ service } : { service : Service} ) => {
+const ServiceCard = ({ service }: { service: Service }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 

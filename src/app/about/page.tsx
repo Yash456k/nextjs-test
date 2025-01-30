@@ -1,4 +1,6 @@
+// pages/about.js
 import React from 'react';
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -6,7 +8,6 @@ import Image from 'next/image';
 import { Calendar, Award, Stethoscope } from 'lucide-react';
 
 const About = () => {
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-16 px-6">
       <Card className="max-w-5xl mx-auto p-8 lg:p-12 bg-white/80 backdrop-blur">
@@ -39,7 +40,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Content Section - Rest remains the same */}
+          {/* Content Section */}
           <CardContent className="flex-1 space-y-6 lg:pt-0">
             <div>
               <h1 className="text-4xl font-bold text-zinc-900 mb-2">
@@ -55,14 +56,12 @@ const About = () => {
                 With over 6 years of specialized experience, Dr. Ashni Shah
                 brings exceptional expertise in cosmetic dentistry and dental
                 implants. She completed her{' '}
-                <span className=" font-bold text-black">
+                <span className="font-bold text-black">
                   Bachelor of Dental Surgery (BDS)
                 </span>{' '}
                 in 2018 and further honed her skills with a{' '}
-                <span className=" font-bold text-black">Small Residency</span>{' '}
-                in{' '}
-                <span className=" font-bold text-black">Implant Dentistry</span>
-                .
+                <span className="font-bold text-black">Small Residency</span> in{' '}
+                <span className="font-bold text-black">Implant Dentistry</span>.
               </p>
 
               <p className="text-lg leading-relaxed">
@@ -98,13 +97,12 @@ const About = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="/#contact_us">
-  <Button size="lg" className="flex items-center gap-2">
-    <Calendar className="w-4 h-4" />
-    Book Consultation
-  </Button>
-</a>
-
+              <Link href="/#contact_us">
+                <Button size="lg" className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  Book Consultation
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </div>
