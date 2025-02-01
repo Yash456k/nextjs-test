@@ -8,7 +8,12 @@ import {
   NavigationMenuItem,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
@@ -55,10 +60,10 @@ const Navbar = () => {
     <header className="border-b sticky top-0 z-50 bg-white" role="banner">
       <div className="flex h-16 items-center px-4 justify-between max-w-screen-xl mx-auto">
         <Link href="/" className="font-mono" onClick={closeNavbar}>
-          <Image 
-            src="/Actual_Logo.png" 
-            alt="Logo" 
-            width={60} 
+          <Image
+            src="/Actual_Logo.png"
+            alt="Logo"
+            width={60}
             height={30}
             priority
           />
@@ -95,24 +100,25 @@ const Navbar = () => {
 
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="md:hidden">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              aria-label="Menu"
-            >
+            <Button variant="ghost" size="icon" aria-label="Menu">
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
-            <SheetTitle className="text-left mb-4">Navigation Menu</SheetTitle>
-            <nav className="flex flex-col space-y-4" aria-label="Mobile navigation">
+            <SheetTitle className="text-left mb-4 font-bold text-3xl">
+              Menu
+            </SheetTitle>
+            <nav
+              className="flex flex-col space-y-4"
+              aria-label="Mobile navigation"
+            >
               {navItems.map((item) =>
                 item.onClick ? (
                   <a
                     key={item.href}
                     href={item.href}
                     onClick={item.onClick}
-                    className="text-sm font-medium transition-colors hover:text-primary"
+                    className="text-xl font-medium transition-colors hover:text-primary"
                   >
                     {item.label}
                   </a>
@@ -120,7 +126,7 @@ const Navbar = () => {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-sm font-medium transition-colors hover:text-primary"
+                    className="text-xl font-medium transition-colors hover:text-primary"
                     onClick={closeNavbar}
                   >
                     {item.label}
