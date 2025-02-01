@@ -11,6 +11,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { images } from '@/lib/data/home_page_photos';
+import Link from 'next/link';
 
 // Updated images array with all your local images
 
@@ -27,12 +28,11 @@ const HeroSection = () => {
             Welcome to Akaay Dental Care, your trusted dentist in Ahmedabad
           </p>
           <div className="mt-8 flex gap-4">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
-              Book Appointment
-            </Button>
-            <Button variant="outline" className="px-6 py-3">
-              Learn More
-            </Button>
+            <Link href="#contact_us">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3">
+                Book Appointment
+              </Button>
+            </Link>
           </div>
         </div>
 

@@ -8,14 +8,16 @@ import {
   NavigationMenuItem,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact_us');
@@ -28,17 +30,19 @@ const Navbar = () => {
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     e.preventDefault();
+    setIsOpen(false);
     if (pathname !== '/') {
-      // If not on home page, navigate to home page first
       router.push('/');
-      // Wait for navigation to complete
       setTimeout(() => {
         scrollToContact();
       }, 100);
     } else {
-      // If already on home page, just scroll
       scrollToContact();
     }
+  };
+
+  const closeNavbar = () => {
+    setIsOpen(false);
   };
 
   const navItems = [
@@ -48,14 +52,18 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="border-b sticky top-0 z-50 bg-white">
+    <header className="border-b sticky top-0 z-50 bg-white" role="banner">
       <div className="flex h-16 items-center px-4 justify-between max-w-screen-xl mx-auto">
-        {/* Logo */}
-        <Link href="/" className="font-mono">
-          <Image src="/Actual_Logo.png" alt="Logo" width={60} height={30} />
+        <Link href="/" className="font-mono" onClick={closeNavbar}>
+          <Image 
+            src="/Actual_Logo.png" 
+            alt="Logo" 
+            width={60} 
+            height={30}
+            priority
+          />
         </Link>
 
-        {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="flex gap-6">
             {navItems.map((item) => (
@@ -75,6 +83,7 @@ const Navbar = () => {
                   <Link
                     href={item.href}
                     className="text-sm font-medium transition-colors hover:text-primary"
+                    onClick={closeNavbar}
                   >
                     {item.label}
                   </Link>
@@ -84,16 +93,19 @@ const Navbar = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Mobile Navigation */}
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              aria-label="Menu"
+            >
               <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
-            <nav className="flex flex-col space-y-4 mt-4">
+            <SheetTitle className="text-left mb-4">Navigation Menu</SheetTitle>
+            <nav className="flex flex-col space-y-4" aria-label="Mobile navigation">
               {navItems.map((item) =>
                 item.onClick ? (
                   <a
@@ -109,6 +121,7 @@ const Navbar = () => {
                     key={item.href}
                     href={item.href}
                     className="text-sm font-medium transition-colors hover:text-primary"
+                    onClick={closeNavbar}
                   >
                     {item.label}
                   </Link>
@@ -118,7 +131,7 @@ const Navbar = () => {
           </SheetContent>
         </Sheet>
       </div>
-    </div>
+    </header>
   );
 };
 

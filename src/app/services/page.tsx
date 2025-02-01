@@ -1,6 +1,12 @@
 'use client';
-import React, { JSX, useState } from 'react';
-import { Card } from '@/components/ui/card';
+import React,{JSX} from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import {
   Stethoscope,
   Activity,
@@ -10,7 +16,6 @@ import {
   Smile,
   Syringe,
   HeartPulse,
-  ChevronRight,
 } from 'lucide-react';
 
 interface Service {
@@ -68,82 +73,40 @@ const services = [
 ];
 
 const ServiceCard = ({ service }: { service: Service }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    if (window.innerWidth >= 768) setIsExpanded(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    if (window.innerWidth >= 768) setIsExpanded(false);
-  };
-
   return (
-    <Card
-      className={`group relative overflow-hidden transition-all duration-1000 ease-in-out
-          ${isExpanded ? 'bg-gradient-to-br from-blue-50 to-white' : 'hover:bg-blue-50/30'}`}
-      onClick={() => setIsExpanded(!isExpanded)}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className="p-6">
-        <div className="flex items-center gap-4 mb-3">
-          <div
-            className={`p-2 rounded-lg transition-all duration-1000
-              ${isExpanded ? 'bg-blue-100 text-blue-700' : 'bg-blue-50 text-blue-600 group-hover:bg-blue-100'}`}
-          >
+    <Card className="group transition-colors hover:bg-blue-50/30">
+      <CardHeader>
+        <div className="flex items-center gap-4">
+          <div className="p-2 rounded-lg bg-blue-100 text-blue-700">
             {service.icon}
           </div>
-          <h3 className="font-semibold text-lg text-zinc-900">
-            {service.name}
-          </h3>
+          <CardTitle className="text-lg">{service.name}</CardTitle>
         </div>
-
-        <div
-          className={`transition-all duration-1000 ease-in-out
-            ${isExpanded ? 'max-h-80 opacity-100 transform translate-y-0' : 'max-h-0 opacity-0 transform -translate-y-4'}`}
-        >
-          <p className="text-zinc-600 mb-4">{service.description}</p>
-        </div>
-      </div>
-
-      {/* Show "Click here to reveal..." when expanded but not hovered */}
-      {isExpanded && !isHovered && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white/80 text-blue-600 text-sm font-medium">
-          Click here to reveal...
-        </div>
-      )}
-
-      <div
-        className={`absolute bottom-3 right-3 transition-all duration-1000
-          ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
-      >
-        <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
-          <ChevronRight className="w-4 h-4 text-blue-600" />
-        </div>
-      </div>
+      </CardHeader>
+      <CardContent>
+        <CardDescription className="text-sm text-zinc-600">
+          {service.description}
+        </CardDescription>
+      </CardContent>
     </Card>
   );
 };
 
 const Services = () => {
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-white via-blue-50/30 to-white">
+    <section className="py-16 md:py-20 px-4 md:px-6 bg-gradient-to-b from-white via-blue-50/30 to-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-zinc-900 mb-6">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4 md:mb-6">
             Comprehensive Dental Services
           </h2>
-          <p className="text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-zinc-600 max-w-3xl mx-auto leading-relaxed">
             Experience top-quality dental care with our expert treatments
             designed to restore, enhance, and maintain your smile.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} />
           ))}
